@@ -29,6 +29,24 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        makeView();
+    }
+
+    // 안드로이드 뷰 주기를 이용하여 Destroy 될 시의 메소드
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(wm != null) {
+            if(mView != null) {
+                wm.removeView(mView);
+                mView = null;
+            }
+            wm = null;
+        }
+    }
+
+    // 버튼을 클릭할시에 최상위 뷰 올리기
+    public void makeView() {
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
 
@@ -59,17 +77,5 @@ public class MyService extends Service {
             }
         });
         wm.addView(mView, params);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(wm != null) {
-            if(mView != null) {
-                wm.removeView(mView);
-                mView = null;
-            }
-            wm = null;
-        }
     }
 }

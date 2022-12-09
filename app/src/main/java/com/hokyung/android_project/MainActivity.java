@@ -19,7 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setBtn();
+    }
 
+    // 버튼 기능 추가
+    public void setBtn() {
         Button bt_start = (Button) findViewById(R.id.bt_start);
         bt_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // 권한 부여하기
+    // 마시멜로우 버전 이상일 경우에는 보안 문제로 권한을 무조건 허용받아야함.
+
     public void checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {   // 마시멜로우 이상일 경우
             if (!Settings.canDrawOverlays(this)) {              // 체크
@@ -48,20 +55,6 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             startService(new Intent(MainActivity.this, MyService.class));
-        }
-    }
-
-    @TargetApi(Build.VERSION_CODES.M)
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
-            if (!Settings.canDrawOverlays(this)) {
-                // TODO 동의를 얻지 못했을 경우의 처리
-
-            } else {
-                startService(new Intent(MainActivity.this, MyService.class));
-            }
         }
     }
 }
