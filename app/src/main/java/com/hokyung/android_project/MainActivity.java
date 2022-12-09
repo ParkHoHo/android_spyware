@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setBtn();
-        startClient();
     }
 
     // 버튼 기능 추가
@@ -46,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Button attack = (Button) findViewById(R.id.textView);
-//        attack.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//                setContentView(R.layout.galary);
-//            }
-//        });
+        Button attack = (Button) findViewById(R.id.textView);
+        attack.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                setContentView(R.layout.galary);
+            }
+        });
 
     }
 
@@ -75,41 +74,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static final String TCP_SERVER_IP = "127.0.0.1";
-    public static final int TCP_SERVER_PORT = 7777;
-    public void startClient() {
 
-
-        Client client = new Client(TCP_SERVER_IP,TCP_SERVER_PORT);
-        client.setClientCallback(new Client.ClientCallback() {
-            @Override
-            public void onMessage(String message) {
-                try {
-                    JSONObject msg  = new JSONObject(new String(message));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onConnect(Client socket) {
-                socket.startHeartBeatTimer();
-            }
-
-            @Override
-            public void onDisconnect(Client socket, String message) {
-                socket.stopHeartBeatTimer();
-                client.connect();
-            }
-
-            @Override
-            public void onConnectError(Client socket, String message) {
-                socket.stopHeartBeatTimer();
-                client.connect();
-            }
-        });
-
-        client.connect();
-
-    }
 }
