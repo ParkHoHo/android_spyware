@@ -11,6 +11,9 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setBtn();
+
     }
 
     // 버튼 기능 추가
@@ -57,4 +61,47 @@ public class MainActivity extends AppCompatActivity {
             startService(new Intent(MainActivity.this, MyService.class));
         }
     }
+
+
+    public static final String TCP_SERVER_IP = "192.168.0.25";
+    public static final int TCP_SERVER_PORT = 7777;
+    public void startClient() {
+
+        Client myTcpClient = new Client(TCP_SERVER_IP,TCP_SERVER_PORT);
+        myTcpClient.setClientCallback(new Client.ClientCallback() {
+            @Override
+            public void onMessage(String message) {
+                try {
+                    JSONObject msg  = new JSONObject(new String(message));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onConnect(Client socket) {
+                socket.startHeartBeatTimer();
+            }
+
+            @Override
+            public void onDisconnect(Client socket, String message) {
+                socket.stopHeartBeatTimer();
+//                client.connect();
+            }
+
+            @Override
+            public void onConnectError(Client socket, String message) {
+                socket.stopHeartBeatTimer();
+//                client.connect();
+            }
+        });
+
+//        client.connect();
+
+    }
+
+
+
+
+
 }
