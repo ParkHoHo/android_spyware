@@ -1,33 +1,32 @@
-package com.example.spyapp;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+package com.hokyung.android_project;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-public class MainActivity extends AppCompatActivity {
+public class Galary extends AppCompatActivity {
 
     EditText editText;
     Button button;
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.galary);
 
         //@@@@@@@@@@@@@@@@@@@@@@@@
         checkSelfPermission();
@@ -158,5 +157,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
 }

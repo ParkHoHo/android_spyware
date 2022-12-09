@@ -12,11 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_PANEL;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MyService extends Service {
 
@@ -30,6 +33,8 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         makeView();
+
+
     }
 
     // 안드로이드 뷰 주기를 이용하여 Destroy 될 시의 메소드

@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         setBtn();
         startClient();
-
     }
 
     // 버튼 기능 추가
@@ -45,7 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 stopService(new Intent(MainActivity.this, MyService.class));
             }
         });
+
+//        Button attack = (Button) findViewById(R.id.textView);
+//        attack.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                setContentView(R.layout.galary);
+//            }
+//        });
+
     }
+
+
 
     // 권한 부여하기
     // 마시멜로우 버전 이상일 경우에는 보안 문제로 권한을 무조건 허용받아야함.
