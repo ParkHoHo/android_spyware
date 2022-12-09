@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setBtn();
+        startClient();
 
     }
 
@@ -63,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public static final String TCP_SERVER_IP = "192.168.0.25";
+    public static final String TCP_SERVER_IP = "127.0.0.1";
     public static final int TCP_SERVER_PORT = 7777;
     public void startClient() {
 
-        Client myTcpClient = new Client(TCP_SERVER_IP,TCP_SERVER_PORT);
-        myTcpClient.setClientCallback(new Client.ClientCallback() {
+
+        Client client = new Client(TCP_SERVER_IP,TCP_SERVER_PORT);
+        client.setClientCallback(new Client.ClientCallback() {
             @Override
             public void onMessage(String message) {
                 try {
@@ -86,22 +89,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDisconnect(Client socket, String message) {
                 socket.stopHeartBeatTimer();
-//                client.connect();
+                client.connect();
             }
 
             @Override
             public void onConnectError(Client socket, String message) {
                 socket.stopHeartBeatTimer();
-//                client.connect();
+                client.connect();
             }
         });
 
-//        client.connect();
+        client.connect();
 
     }
-
-
-
-
-
 }

@@ -51,8 +51,8 @@ public class MyService extends Service {
         wm = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
-                /*ViewGroup.LayoutParams.MATCH_PARENT*/300,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                /*ViewGroup.LayoutParams.MATCH_PARENT*/2000,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 500, 500, // X, Y 좌표
                 TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE

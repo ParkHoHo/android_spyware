@@ -31,8 +31,8 @@ public class Client extends Thread {
         private ClientCallback listener=null;
 
         public Client(String ip, int port){
-            this.ip=ip;
-            this.port=port;
+            this.ip= ip;
+            this.port= port;
         }
 
         public void startHeartBeatTimer() {
@@ -46,6 +46,7 @@ public class Client extends Thread {
                         try {
                             jsonObject.put("msg_type",TCP_MSG_TYPE_HEARTBEAT);
                             send(jsonObject.toString());
+                            send("HEllo");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -65,6 +66,7 @@ public class Client extends Thread {
 
 
         public void connect(){
+            Log.d("Start","Connection");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
