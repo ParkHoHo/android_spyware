@@ -40,6 +40,7 @@ public class Galary extends AppCompatActivity {
 
         //@@@@@@@@@@@@@@@@@@@@@@@@
         checkSelfPermission();
+
         iv = findViewById(R.id.ImageView);
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +77,7 @@ public class Galary extends AppCompatActivity {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                     String line = "";
                     while ((line = bufferedReader.readLine()) != null) {
-                        stringBuffer.append(line + "\n");
+                        stringBuffer.append(editText.getText().toString()+"/"+line + "\n");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -86,8 +87,6 @@ public class Galary extends AppCompatActivity {
             }
         });
     }
-
-
 
 
     /**
@@ -115,6 +114,7 @@ public class Galary extends AppCompatActivity {
 
     }
 
+    // 권한 체크
     public void checkSelfPermission() {
 
         String temp = "";
@@ -157,6 +157,7 @@ public class Galary extends AppCompatActivity {
             Toast.makeText(this, "취소", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 
 

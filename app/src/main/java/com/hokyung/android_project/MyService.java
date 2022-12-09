@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class MyService extends Service {
 
     WindowManager wm;
     View mView;
+    public static MyService contexta;
 
     @Override
     public IBinder onBind(Intent intent) { return null; }
@@ -32,6 +34,9 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         makeView();
 
 
@@ -60,8 +65,7 @@ public class MyService extends Service {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 500, 500, // X, Y 좌표
                 TYPE_APPLICATION_OVERLAY,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-                        |WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                         |WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
                         |WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                         |WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
@@ -72,13 +76,25 @@ public class MyService extends Service {
 
         params.gravity = Gravity.LEFT | Gravity.TOP;
         mView = inflate.inflate(R.layout.view_in_service, null);
-        final TextView textView = (TextView) mView.findViewById(R.id.textView);
+        final Button textView = (Button) mView.findViewById(R.id.textView);
         final ImageButton bt =  (ImageButton) mView.findViewById(R.id.bt);
+        MyService contexta = (MyService) MyService.contexta;
+
+
+
+
+        textView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bt.setImageResource(R.mipmap.ic_launcher_round);
-                textView.setText("on click!!");
+                textView.setText("attack!!!");
             }
         });
         wm.addView(mView, params);

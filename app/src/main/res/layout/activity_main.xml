@@ -21,4 +21,11 @@
         android:onClick="mStop"
         android:text="종료하기"/>
 
+    <Button
+        android:id="@+id/bt_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="mattack"
+        android:text="test"/>
+
 </LinearLayout>

@@ -3,12 +3,14 @@ package com.hokyung.android_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 버튼 기능 추가
+
+    // 시작하기 버튼
     public void setBtn() {
         Button bt_start = (Button) findViewById(R.id.bt_start);
         bt_start.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // 멈추기 버튼
         Button bt_stop = (Button) findViewById(R.id.bt_stop);
         bt_stop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +51,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button attack = (Button) findViewById(R.id.textView);
+        Button attack = (Button) findViewById(R.id.bt_test);
         attack.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 setContentView(R.layout.galary);
             }
         });
+
 
     }
 
